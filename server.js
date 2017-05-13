@@ -33,22 +33,25 @@ router.get('/', function(req, res){
     res.json({ message: 'hello world!'});
 });
 
-router.route('/survivors')
+router.route('/survivors:survivors_id?')
     .get(function(req, res){
-        Survivor.find(function(err, survivors){
+        Survivor.find()
+        .exec(function (err, survivors){
             if(err)
                 res.send(err);
-            res.json(survivors);
-        });
+            res.json(survivors)
+        })
     })
     .post(function(req, res){
         var survivor = new Survivor();
         survivor.name = req.body.name;
         survivor.gender = req.body.gender;
-        survivor.age = req.survivor.age;
-        survivor.location = req.survivor.location;
-        survivor.inventory = req.survivor.inventory;
-
+        survivor.age = req.body.age;
+        survivor.location = req.body.location;
+        survivor.inventory = req.body.inventory;
+        survivor.infected = req.body.infected;
+        survivor.reports = req.body.reports;
+        
         survivor.save(function (err){
             if(err)
                 res.send(err);
@@ -56,7 +59,7 @@ router.route('/survivors')
         })
     });
 
-    
+
 //Setting Static Files Local
 app.use('/', express.static(__dirname+'/public'));
 app.use('/libs', express.static(__dirname+'/node_modules/bootstrap/dist'));

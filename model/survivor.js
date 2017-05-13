@@ -5,8 +5,18 @@ var survivorSchema = new Schema({
     name: String,
     age: Number,
     gender:String,
-    location:String,
-    inventory:String
-});
+    inventory:{
+        water:Number,
+        food:Number,
+        medication:Number,
+        ammunation:Number
+    },
+    location:{
+        latitude:String,
+        longitude:String
+    },
+    infected:Boolean,
+    reports:Number
+    });
 
 module.exports = mongoose.model('Survivor', survivorSchema);
