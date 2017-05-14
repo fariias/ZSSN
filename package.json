@@ -4,15 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "make test"
+    },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "jsonwebtoken": "^7.4.0",
-    "mongoose": "^4.9.8"
+    "mocha": "^3.3.0",
+    "mongoose": "^4.9.8",
+    "should": "^11.2.1",
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "@angular/common": "^4.1.2",
@@ -29,4 +32,5 @@
     "systemjs": "^0.19.27",
     "zone.js": "^0.6.12"
   }
+  
 }

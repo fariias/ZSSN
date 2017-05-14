@@ -1,3 +1,4 @@
+var config = require('./config');
 var express = require('express');
 var app = express();
 var bodyparser = require('body-parser');
@@ -8,7 +9,7 @@ var secretKey = 'secretKeySurvivor';
 
 //database settings 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://codeminer:codeminer#@ds139761.mlab.com:39761/codeminer', function(err){
+mongoose.connect(config.db.mongodb, function(err){
     if(err){ console.error("error! "+ err)}
 });
 
