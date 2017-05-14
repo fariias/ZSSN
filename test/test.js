@@ -29,4 +29,33 @@ describe('Routing', function () {
         });
     });
 
+
+    describe('SURVIVOR', function () {
+        var body = {
+            "name": "Junior",
+            "gender": "M",
+            "age": 20,
+            "location": { "latitude": "-5.999", "longitude": "-9.87584" },
+            "inventory": { "water": 3, "ammunation": 10, "food": 5, "medication": 3 },
+            "infected": false,
+            "reports": 0
+        }
+
+        it('checking the create an survivor', function (done) {
+            request(url)
+                .post('/api/survivors')
+                .send(body)
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        throw err;
+                    }
+                    res.body.should.have.property('_id');
+                    res.body.name.should.equal('Junior');
+                    done();
+                });
+        });
+    });
+
 });
