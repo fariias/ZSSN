@@ -4,8 +4,9 @@ var request = require('supertest');
 var mongoose = require('mongoose');
 
 var config = require('../config');
-var databaseTest = require('./database-test.js')
+var databaseTest = require('./database-test.js');
 var Survivors = require('../model/survivor');
+
 describe('Routing', function () {
     var url = '127.0.0.1:8080';
     var id1 = ''; // for first user test
@@ -92,6 +93,22 @@ describe('Routing', function () {
                         throw err;
                     }
                     res.body.infected.should.equal(true);
+                    done();
+                });
+        });
+    });
+
+    describe('REPORTS', function () {
+
+        it('Percentage of infected survivors.', function (done) {
+            request(url)
+                .get('/reports/infected')
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        throw err
+                    }
+                    res.body.infected.should.equal(25);
                     done();
                 });
         });
