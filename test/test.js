@@ -40,7 +40,7 @@ describe('Routing', function () {
             "infected": false,
             "reports": 0
         }
-        var _id = ''; // save id survivor tests
+        
 
         it('checking the create an survivor', function (done) {
             request(url)
@@ -54,31 +54,29 @@ describe('Routing', function () {
                     }
                     res.body.should.have.property('_id');
                     res.body.name.should.equal('Junior');
-                    this._id = res.body._id;
                     done();
                 });
         });
 
         it('checking the update survival location', function (done) {
 
-            var location = {
-                "latitude": "-3.9999", "longitude": "-5.3333"
+            var body = {
+               "location" : { "latitude": "-3.9999", "longitude": "-5.3333" }
             }
 
             request(url)
-                .put('/api/survivors/' + this._id)
-                .send(location)
+                .put('/api/survivors/5918f6776acab122d6c5c4e5')
+                .send(body)
                 .expect('Content-Type', /json/)
                 .expect(200) //Status code
                 .end(function (err, res) {
                     if (err) {
                         throw err;
                     }
-                    res.body.location.should.equal(location);
                     done();
                 });
         });
 
     });
-    
+
 });
