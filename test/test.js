@@ -66,7 +66,7 @@ describe('Routing', function () {
                     }
                     res.body.should.have.property('_id');
                     res.body.name.should.equal('Junior');
-                    id = res.body._id;
+                    id1 = res.body._id;
                     done();
                 });
         });
@@ -83,7 +83,7 @@ describe('Routing', function () {
                     }
                     res.body.should.have.property('_id');
                     res.body.name.should.equal('Peterson');
-                    id = res.body._id;
+                    id2 = res.body._id;
                     done();
                 });
         });
@@ -95,7 +95,7 @@ describe('Routing', function () {
             }
 
             request(url)
-                .put('/api/survivors/' + id)
+                .put('/api/survivors/' + id1)
                 .send(body)
                 .expect('Content-Type', /json/)
                 .expect(200) //Status code
@@ -109,14 +109,13 @@ describe('Routing', function () {
                 });
         });
 
-        it('checking the report infected survival', function (done) {
+        it('checking the report infected survivers', function (done) {
             var body = {
-                "report_id": id2,
-                "survivor_id": id1
+                "report_id": id2
             }
 
             request(url)
-                .put('/api/survivors/' + id +'/report')
+                .put('/api/survivors/' + id1 + '/report')
                 .send(body)
                 .expect('Content-Type', /json/)
                 .expect(200) //Status code
@@ -126,6 +125,26 @@ describe('Routing', function () {
                     }
                     done();
                 });
+        });
+
+        it('checking an trade beetwen survivers', function (done) {
+            var body = {
+                "trader_id": id2,
+                "survivor_id": id1
+            }
+
+            request(url)
+                .post('/api/survivors/trade')
+                .send(body)
+                .expect('Content-Type', /json/)
+                .expect(200) // status code
+                .end(function (err, res) {
+                    if (err) {
+                        throw err;
+                    }
+                    done();
+                })
+
         });
 
     });

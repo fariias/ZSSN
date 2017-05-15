@@ -89,6 +89,27 @@ router.route('/survivors/:survivor_id?')
         });
     });
 
+router.route('/survivors/:survivor_id/report')
+    .put(function (req, res) {
+        var id = req.params.survivor_id;
+        Survivor.findOne({ '_id': id }).exec(function (err, survivor) {
+            if (err)
+                res.send(err);
+
+            survivor.reports.push(req.body);
+            if (survivor.reports.lenght >= 3) {
+                survivor.infected = true;
+            }
+
+            survivor.save(function (err) {
+                if (err)
+                    res.send(err);
+
+                res.json(survivor);
+            });
+        });
+    });
+
 
 //Setting Static Files Local
 app.use('/', express.static(__dirname + '/public'));
