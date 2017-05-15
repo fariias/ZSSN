@@ -10,11 +10,33 @@ describe('Routing', function () {
     var url = '127.0.0.1:8080';
     var id1 = ''; // for first user test
     var id2 = '';// for second user test
-
+    var deleteAfter = false; //clear db after tests
     before(function (done) {
         mongoose.connect(config.db.mongodb);
-        done();
+        var Survivors = require('../model/survivor');
+        Survivors.count({})
+            .then(function (count) {
+                if (count === 0) {
+                    deleteAfter = true;
+                } else {
+                    console.log('Database already exists');
+                }
+            })
+            .then(function () {
+                done();
+            })
     });
+
+    after(function (done) {
+        if (deleteAfter) {
+            console.log('Deleting database...');
+            mongoose.connection.db.dropDatabase(done);
+        } else {
+            done();
+        }
+    });
+
+
 
     describe('API', function () {
         it('checking if the api is avaiable', function (done) {
@@ -148,5 +170,7 @@ describe('Routing', function () {
         });
 
     });
+
+
 
 });
