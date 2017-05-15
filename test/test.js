@@ -36,12 +36,10 @@ describe('Routing', function () {
         }
     });
 
-
-
     describe('API', function () {
         it('checking if the api is avaiable', function (done) {
             request(url)
-                .get('/api')
+                .get('/')
                 .expect(200)
                 .end(function (err, res) {
                     if (err) {
@@ -78,7 +76,7 @@ describe('Routing', function () {
 
         it('checking the create an first survivor', function (done) {
             request(url)
-                .post('/api/survivors')
+                .post('/survivors')
                 .send(body)
                 .expect('Content-Type', /json/)
                 .expect(200)
@@ -95,7 +93,7 @@ describe('Routing', function () {
 
         it('checking the create an second survivor', function (done) {
             request(url)
-                .post('/api/survivors')
+                .post('/survivors')
                 .send(body2)
                 .expect('Content-Type', /json/)
                 .expect(200)
@@ -117,7 +115,7 @@ describe('Routing', function () {
             }
 
             request(url)
-                .put('/api/survivors/' + id1)
+                .put('/survivors/' + id1)
                 .send(body)
                 .expect('Content-Type', /json/)
                 .expect(200) //Status code
@@ -137,7 +135,7 @@ describe('Routing', function () {
             }
 
             request(url)
-                .put('/api/survivors/' + id1 + '/report')
+                .put('/survivors/' + id1 + '/report')
                 .send(body)
                 .expect('Content-Type', /json/)
                 .expect(200) //Status code
@@ -156,7 +154,7 @@ describe('Routing', function () {
             }
 
             request(url)
-                .post('/api/survivors/trade')
+                .post('/survivors/trade')
                 .send(body)
                 .expect('Content-Type', /json/)
                 .expect(200) // status code
@@ -170,7 +168,4 @@ describe('Routing', function () {
         });
 
     });
-
-
-
 });
