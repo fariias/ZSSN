@@ -77,7 +77,7 @@ router.route('/survivors/:survivor_id/report')
                 res.send(err);
 
             survivor.reports.push(req.body);
-            if (survivor.reports.lenght >= 3) {
+            if (survivor.reports.length >= 3) {
                 survivor.infected = true;
             }
 
