@@ -4,8 +4,8 @@ Zombie Survival Social Network
 ## Installation
 ```bash
 git clone https://github.com/fariias/ZSSN
-npm install 
 cd ZSSN
+npm install 
 ```
 ## Run
 Run automated tests
