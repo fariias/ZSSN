@@ -1,6 +1,22 @@
 # ZSSN
 Zombie Survival Social Network
 
+## Installation
+```bash
+git clone https://github.com/fariias/ZSSN
+npm install 
+cd codeminer
+```
+## Run
+###Run automated tests
+```bash
+npm test
+```
+###Run server
+```bash
+nodemon server.js
+```
+
 ## Endpoints
 
 ## SURVIVORS
