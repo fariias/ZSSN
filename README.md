@@ -8,11 +8,11 @@ npm install
 cd codeminer
 ```
 ## Run
-###Run automated tests
+Run automated tests
 ```bash
 npm test
 ```
-###Run server
+Run server
 ```bash
 nodemon server.js
 ```
