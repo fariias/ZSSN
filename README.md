@@ -5,7 +5,7 @@ Zombie Survival Social Network
 ```bash
 git clone https://github.com/fariias/ZSSN
 npm install 
-cd codeminer
+cd ZSSN
 ```
 ## Run
 Run automated tests
