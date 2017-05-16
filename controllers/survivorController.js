@@ -9,7 +9,7 @@ router.use(function (req, res, next) {
     next();
 })
 
-// GET
+
 router.route('/')
     .get(function (req, res) {
         res.json({ message: 'hello world!' });

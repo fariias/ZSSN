@@ -9,7 +9,7 @@ router.use(function (req, res, next) {
     next();
 })
 
-// GET
+
 router.route('/reports/infected')
     .get(function (req, res) {
         Survivor.count({}, function (err, survivors) {
@@ -24,5 +24,19 @@ router.route('/reports/infected')
 
     });
 
+
+router.route('/reports/noinfected')
+    .get(function (req, res) {
+        Survivor.count({}, function (err, survivors) {
+            Survivor.count({ infected: false }, function (err, noInfecteds) {
+                if (err) {
+                    res.send(err);
+                }
+                var survivorsPercentage = ((noInfecteds / survivors) * 100) || 0;
+                res.json({ noInfected: survivorsPercentage });
+            });
+        });
+
+    });
 
 module.exports = router

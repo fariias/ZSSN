@@ -23,8 +23,6 @@ describe('Routing', function () {
     });
 
 
-
-
     describe('SURVIVOR', function () {
 
         it('checking all survivors get', function (done) {
@@ -53,6 +51,14 @@ describe('Routing', function () {
                     id1 = res.body._id;
                     res.body.should.have.property('_id');
                     res.body.name.should.equal(databaseTest.survivor4.name);
+                    res.body.gender.should.equal(databaseTest.survivor4.gender);
+                    res.body.age.should.equal(databaseTest.survivor4.age);
+                    res.body.inventory.water.should.equal(databaseTest.survivor4.inventory.water);
+                    res.body.inventory.food.should.equal(databaseTest.survivor4.inventory.food);
+                    res.body.inventory.ammunation.should.equal(databaseTest.survivor4.inventory.ammunation);
+                    res.body.inventory.medication.should.equal(databaseTest.survivor4.inventory.medication);
+                    res.body.location.latitude.should.equal(databaseTest.survivor4.location.latitude);
+                    res.body.location.longitude.should.equal(databaseTest.survivor4.location.longitude);
                     done();
                 });
         });
@@ -98,11 +104,13 @@ describe('Routing', function () {
         });
     });
 
+
     describe('REPORTS', function () {
 
         it('Testing the percentage of infected survivors.', function (done) {
             request(url)
                 .get('/reports/infected')
+                .expect('Content-Type', /json/)
                 .expect(200)
                 .end(function (err, res) {
                     if (err) {
@@ -116,15 +124,15 @@ describe('Routing', function () {
         it('Testing the percentage of infected survivors.', function (done) {
             request(url)
                 .get('/reports/noinfected')
+                .expect('Content-Type', /json/)
                 .expect(200)
                 .end(function (err, res) {
                     if (err) {
                         throw err
                     }
-                    res.body.infected.should.equal(75);
+                    res.body.noInfected.should.equal(75);
                     done();
                 });
         });
-
     });
 });
