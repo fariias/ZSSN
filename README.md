@@ -5,6 +5,7 @@ Zombie Survival Social Network
 ```bash
 git clone https://github.com/fariias/ZSSN
 cd ZSSN
+npm install nodemon -g
 npm install 
 ```
 ## Run
