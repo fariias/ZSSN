@@ -100,7 +100,7 @@ describe('Routing', function () {
 
     describe('REPORTS', function () {
 
-        it('Percentage of infected survivors.', function (done) {
+        it('Testing the percentage of infected survivors.', function (done) {
             request(url)
                 .get('/reports/infected')
                 .expect(200)
@@ -112,5 +112,19 @@ describe('Routing', function () {
                     done();
                 });
         });
+
+        it('Testing the percentage of infected survivors.', function (done) {
+            request(url)
+                .get('/reports/noinfected')
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        throw err
+                    }
+                    res.body.infected.should.equal(75);
+                    done();
+                });
+        });
+
     });
 });
