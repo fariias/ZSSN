@@ -16,6 +16,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
 app.use(require('./controllers/survivorController'));
+app.use(require('./controllers/reportsController'));
 
 //Setting Static Files Local
 app.use('/', express.static(__dirname + '/public'));
