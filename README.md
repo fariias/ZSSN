@@ -19,6 +19,7 @@ nodemon server.js
 ```
 
 ## Endpoints
+you can use the 'postman' for tests https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop
 
 ## SURVIVORS
 
