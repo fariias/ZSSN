@@ -6,7 +6,7 @@ Zombie Survival Social Network
 ### GET /survivors
 Function: Get all survivors
 Example: http://127.0.0.1:8080/survivors
-
+```bash
 Response body:
 [
   {
@@ -29,12 +29,13 @@ Response body:
     }
   },
 ]
+```
 
 ### GET /survivors/{id}
 Function: get an specific surviver
 Example: http://127.0.0.1:8080/survivors/5919ecfd6d8888171341e5f0
  
-
+```bash
 Response body:
 [
   {
@@ -57,11 +58,11 @@ Response body:
     }
   },
 ]
-
+```
 ### POST /survivors
 Function: create an survivor
 Example: http://127.0.0.1:8080/survivors/
-
+```bash
 Request body:
 {
 	"name":"Survival1",
@@ -73,7 +74,8 @@ Request body:
 	"reports":[]
 	
 }
-
+```
+```bash
 Response body:
 [
   {
@@ -96,3 +98,4 @@ Response body:
     }
   },
 ]
+```
