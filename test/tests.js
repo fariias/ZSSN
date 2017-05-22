@@ -8,6 +8,7 @@ var databaseTest = require('./database-test.js');
 var Survivors = require('../model/survivor');
 
 describe('Routing', function () {
+    this.timeout(15000); //set timeout limit tests
     var url = '127.0.0.1:8080';
     var id1 = ''; // for first user test
 
@@ -104,6 +105,20 @@ describe('Routing', function () {
         });
     });
 
+    describe('TRADE', function () {
+
+        it('checking the Trade items function', function (done) {
+            request(url)
+                .get('/survivors/' + databaseTest.survivor3._id + '/trade')
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        throw err
+                    }
+                    done();
+                });
+        });
+    });
 
     describe('REPORTS', function () {
 
