@@ -5,9 +5,9 @@ var data = {
         gender: "m",
         age: 19,
         inventory: {
-            water: 80,
-            food: 100,
-            medication: 30,
+            water: 11,
+            food: 15,
+            medication: 6,
             ammunation: 60
         },
         location: {
@@ -23,10 +23,10 @@ var data = {
         gender: "f",
         age: 40,
         inventory: {
-            water: 100,
-            food: 80,
-            medication: 60,
-            ammunation: 30
+            water: 0,
+            food: 30,
+            medication: 0,
+            ammunation: 10
         },
         location: {
             latitude: '-5.564878',
@@ -41,10 +41,10 @@ var data = {
         gender: "m",
         age: 30,
         inventory: {
-            water: 60,
-            food: 5,
-            medication: 14,
-            ammunation: 20
+            water: 100,
+            food: 80,
+            medication: 60,
+            ammunation: 30
         },
         location: {
             latitude: '-5.734823',
@@ -69,6 +69,20 @@ var data = {
         },
         infected: false,
         reports: []
+    },
+
+    survivor_inventory_expected: {
+        water: 10,
+        food: 5,
+        medication: 5,
+        ammunation: 20
+    },
+
+    trade_inventory_expected: {
+        water: 1,
+        food: 30,
+        medication: 1,
+        ammunation: 4
     }
 }
 module.exports = data;
