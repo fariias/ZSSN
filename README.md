@@ -188,6 +188,43 @@ Response body:
     }
   },
 ```
+
+## TRADE
+
+### POST /survivors/{user_id}/trade
+Function: trade itens 
+Example: http://127.0.0.1:8080/survivors/5919ecfd6d8888171341e5f0/trade
+```bash
+Request body:
+{
+     "trader_id": '5919ecfd6d8888171341e5ef',
+     "survivorProposal": { water: 1, medication: 1 },
+     "traderProposal": { ammunation: 6 }
+}
+```
+```bash
+Response body:
+[
+  {
+    _id: '5919ecfd6d8888171341e5f0',
+        name: "Survival1",
+        gender: "m",
+        age: 19,
+        inventory: {
+            water: 10,
+            food: 15,
+            medication: 5,
+            ammunation: 66
+        },
+        location: {
+            latitude: '-5.818960',
+            longitude: '-35.207356'
+        },
+        infected: false,
+        reports: []
+  },
+]
+```
 ## REPORTS
 
 ### GET /reports/infected
@@ -207,5 +244,15 @@ Example: 127.0.0.1:8080/reports/noinfected
 Response body:
 {
   "noInfected":75
+}
+```
+
+### GET /reports/lostpoints
+Function: Percentage of non-infected survivors.
+Example: 127.0.0.1:8080/reports/noinfected
+```bash
+Response body:
+{
+  "points":790
 }
 ```
