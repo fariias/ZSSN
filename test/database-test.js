@@ -17,6 +17,7 @@ var data = {
         infected: false,
         reports: []
     },
+
     survivor2: {
         _id: '5919ecfd6d8888171341e5ef',
         name: "Survival2",
@@ -35,6 +36,7 @@ var data = {
         infected: false,
         reports: [{ report_id: 'report1' }, { report_id: 'report2' }]
     },
+
     survivor3: {
         _id: '5919ed1874438c175e33bc72',
         name: "Survival3",
@@ -53,6 +55,7 @@ var data = {
         infected: false,
         reports: [{ report_id: 'report1' }, { report_id: 'report2' }]
     },
+
     survivor4: {
         name: "Survivor4",
         gender: "m",
@@ -84,5 +87,6 @@ var data = {
         medication: 1,
         ammunation: 4
     }
+
 }
 module.exports = data;

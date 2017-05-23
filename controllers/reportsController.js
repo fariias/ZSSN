@@ -39,4 +39,31 @@ router.route('/reports/noinfected')
 
     });
 
+router.route('/reports/lostpoints')
+    .get(function (req, res) {
+        var values = {
+            inventoryValues: {
+                water: 4,
+                food: 3,
+                medication: 2,
+                ammunation: 1
+            }
+        }
+
+        Survivor.find({ infected: true }).lean().exec(function (err, survivors) {
+
+            var points = 0;
+
+            survivors.forEach(function (infected) {
+                for (let name in values.inventoryValues) {
+                    if (infected.inventory[name]) {
+                        points += infected.inventory[name] *
+                            values.inventoryValues[name];
+                    }
+                }
+            });
+            res.send({ points })
+        });
+    })
+
 module.exports = router

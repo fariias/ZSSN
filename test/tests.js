@@ -25,7 +25,6 @@ describe('Routing', function () {
 
 
     describe('SURVIVOR', function () {
-
         it('checking all survivors get', function (done) {
             request(url)
                 .get('/survivors')
@@ -105,43 +104,10 @@ describe('Routing', function () {
         });
     });
 
-    describe('TRADE', function () {
 
-        it('checking the Trade items function', function (done) {
 
-            var body = {
-                "trader_id": 'report3',
-                "survivorProposal": { water: 1, medication: 1 },
-                "traderProposal": { ammunation: 6 }
-            }
 
-            request(url)
-                .post('/survivors/' + databaseTest.survivor3._id + '/trade')
-                .expect(200)
-                .send(body)
-                .end(function (err, res) {
-                    if (err) {
-                        throw err
-                    }
 
-                    Survivors.findOne({ _id: databaseTest.survivor1._id }).lean().exec((err, survivor) => {
-                        Survivors.findOne({ _id: databaseTest.survivor2._id }).lean().exec((err, trade) => {
-
-                            //checking survivor inventory
-                            survivor.inventory.water.should.equal(databaseTest.survivor_inventory_expected.water);
-                            survivor.inventory.medication.should.equal(databaseTest.survivor_inventory_expected.medication);
-
-                            //checking trade inventory
-                            survivor.inventory.water.should.equal(databaseTest.survivor_inventory_expected.water);
-                            survivor.inventory.medication.should.equal(databaseTest.survivor_inventory_expected.medication);
-                            done(err);
-                        });
-
-                    });
-
-                });
-        });
-    });
 
     describe('REPORTS', function () {
 
@@ -172,5 +138,64 @@ describe('Routing', function () {
                     done();
                 });
         });
+
+        it('Testing Points lost because of infected survivor.', function (done) {
+            request(url)
+                .get('/reports/noinfected')
+                .expect('Content-Type', /json/)
+                .expect(200)
+                .end(function (err, res) {
+                    if (err) {
+                        throw err
+                    }
+                    done();
+                });
+        });
     });
+
+    describe('TRADE', function () {
+
+        it('checking the Trade items function', function (done) {
+
+            var body = {
+                "trader_id": '5919ecfd6d8888171341e5ef',
+                "survivorProposal": { water: 1, medication: 1 },
+                "traderProposal": { ammunation: 6 }
+            }
+
+            request(url)
+                .post('/survivors/' + databaseTest.survivor1._id + '/trade')
+                .expect(200)
+                .send(body)
+                .end(function (err, res) {
+                    if (err) {
+                        throw err
+                    }
+
+                    Survivors.findOne({ _id: databaseTest.survivor1._id }).lean().exec((err, survivor) => {
+                        Survivors.findOne({ _id: databaseTest.survivor2._id }).lean().exec((err, trade) => {
+
+                            //checking survivor inventory
+                            survivor.inventory.water.should.equal(databaseTest.survivor_inventory_expected.water);
+                            survivor.inventory.medication.should.equal(databaseTest.survivor_inventory_expected.medication);
+
+                            //checking trade inventory
+                            trade.inventory.water.should.equal(databaseTest.trade_inventory_expected.water);
+                            trade.inventory.medication.should.equal(databaseTest.trade_inventory_expected.medication);
+                            done();
+                        });
+
+                    });
+
+                });
+        });
+    });
+
+    after((done) => {
+        Survivors.remove({}, () => {
+            done();
+        });
+    });
+
+
 });
